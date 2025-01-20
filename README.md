@@ -9,6 +9,11 @@ Annotations do JPA (mapeamento entidade relacional):
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+@OneToOne, @OneToMany, @ManyToOne e @ManyToMany serve para definir a relação entre 2 entidades
+no user: (mappedBy = "client") para nomear qual é a propriedade responsável por mapear a relação do outro lado
+
+@JoinColumn(name = "client_id") para definir o nome da coluna da chave estrangeira
+
 Annotations do Spring:
 @RestController define o recurso (resource) como sendo um componente do Spring
 @RequestMapping(value = "/users") para definir a raiz do endpoint do recurso
