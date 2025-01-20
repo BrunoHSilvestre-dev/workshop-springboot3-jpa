@@ -45,6 +45,8 @@ O repository é declarado como interface, e não como classe (extends JPAReposit
 @Repository serve para definir o repositório como sendo um componente do Spring
 @Service serve para definir o serviço como sendo um componente do Spring
 
+Enums: evitar utilizar um enum na forma convencional, apenas com as descrições, o ideal é associar um código para cada item do enum para evitar conflitos de códigos no banco.
+
 H2 database
 endpoint H2-console acessa a UI do H2
 

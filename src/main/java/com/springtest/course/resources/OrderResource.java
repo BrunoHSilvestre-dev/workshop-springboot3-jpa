@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springtest.course.entities.Order;
-import com.springtest.course.entities.User;
 import com.springtest.course.services.OrderService;
 
 @RestController
