@@ -3,6 +3,12 @@ Anotações:
 Spring Initializer (Cria projetos com as dependências prontas) (Add Spring Web nas dependências)
 Por padrão, o spring irá hospedar o serviço na porta 8080
 
+Estrutura MVC: 
+Resource serve para definir qual endpoint executa o qual serviço
+Service atende as chamadas de resources, aplica as regras de negócio e chama o repository
+Repository serve para realizar as interações com banco de dados
+Entity são os objetos que serão utilizados para manipular os registros 
+
 Annotations do JPA (mapeamento entidade relacional):
 @Entity define uma entidade
 @Table(name = "tb_user") define um nome da tabela que corresponde a entidade (o parâmetro serve para trocar o nome caso necessário)
@@ -13,6 +19,10 @@ Annotations do JPA (mapeamento entidade relacional):
 no user: (mappedBy = "client") para nomear qual é a propriedade responsável por mapear a relação do outro lado
 
 @JoinColumn(name = "client_id") para definir o nome da coluna da chave estrangeira
+
+@JsonIgnore para não entrar em loop ao gerar o JSON. No caso foi utilizado no user por conta de que não é interessante trazer todos os pedidos vinculados a um usuário.
+
+@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT") para formatar campos de data com o formato ISO-8601
 
 Annotations do Spring:
 @RestController define o recurso (resource) como sendo um componente do Spring
