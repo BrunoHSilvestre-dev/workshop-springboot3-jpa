@@ -20,6 +20,14 @@ no user: (mappedBy = "client") para nomear qual é a propriedade responsável po
 
 @JoinColumn(name = "client_id") para definir o nome da coluna da chave estrangeira
 
+Mapeamente de relação @ManyToMany, necessita criar uma tabela de junção:
+Escolher um dos lados da junção e aplicar a annotation @ManyToMany
+@JoinTable(name = "products_categories", 
+		joinColumns = @JoinColumn(name = "product_id"),
+		inverseJoinColumns = @JoinColumn(name = "category_id"))
+No outro lado da junção:
+@ManyToMany(mappedBy = "categories") que é o nome da coleção no lado inicial da junção
+
 @JsonIgnore para não entrar em loop ao gerar o JSON. No caso foi utilizado no user por conta de que não é interessante trazer todos os pedidos vinculados a um usuário.
 
 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT") para formatar campos de data com o formato ISO-8601
