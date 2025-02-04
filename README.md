@@ -20,13 +20,20 @@ no user: (mappedBy = "client") para nomear qual é a propriedade responsável po
 
 @JoinColumn(name = "client_id") para definir o nome da coluna da chave estrangeira
 
-Mapeamente de relação @ManyToMany, necessita criar uma tabela de junção:
+Mapeamente de relação @ManyToMany, para criar uma tabela de junção sem entidade correspondente:
 Escolher um dos lados da junção e aplicar a annotation @ManyToMany
 @JoinTable(name = "products_categories", 
 		joinColumns = @JoinColumn(name = "product_id"),
 		inverseJoinColumns = @JoinColumn(name = "category_id"))
 No outro lado da junção:
 @ManyToMany(mappedBy = "categories") que é o nome da coleção no lado inicial da junção
+
+Mapeamento de associação Muitos para muitos com atributos extras (quando é necessário criar uma tabela de junção com entidade correspondente)
+1 - Criar uma classe correspondente à chave primária composta da entidade de junção. Essa deve conter: 
+	@Embeddable que indica que a classe é uma parte intrínsica de outra entidade.
+	Uma referência para ambas as partes (O hashcode equals deve considerar as 2 referências)
+	Em ambas as referências @ManyToOne e @JoinColumn(name == "")
+2 - Criar a entidade em si com uma propriedade da classe de chave composta criada acima com a annotation @EmbeddedId
 
 @JsonIgnore para não entrar em loop ao gerar o JSON. No caso foi utilizado no user por conta de que não é interessante trazer todos os pedidos vinculados a um usuário.
 

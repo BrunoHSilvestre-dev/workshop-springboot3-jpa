@@ -3,6 +3,7 @@ package com.springtest.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.springtest.course.entities.pk.OrderItemPk;
 
 import jakarta.persistence.EmbeddedId;
@@ -15,10 +16,14 @@ public class OrderItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private OrderItemPk id;
+	private OrderItemPk id = new OrderItemPk();
 	
 	private Integer quantity;
 	private Double price;
+	
+	public OrderItem() {
+		
+	}
 	
 	public OrderItem(Order order, Product product, Integer quantity, Double price) {
 		super();
@@ -28,6 +33,7 @@ public class OrderItem implements Serializable{
 		this.price = price;
 	}
 	
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
